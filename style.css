@@ -1,0 +1,82 @@
+* {
+    font-family: "Nata Sans", sans-serif;
+    font-weight: bold;
+}
+
+body {
+    color: #2E3A3F;
+    background-color: #F6F8F8;
+}
+
+.navbar {
+  background-color: hsla(160 84.1% 39.4%) !important;
+}
+
+.navbar .nav-link,
+.navbar-brand {
+  color: white !important;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.navbar .nav-link:hover {
+  color: #2E3A3F !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 3px solid hsla(160 84.1% 39.4%) !important; 
+    outline-offset: 0; 
+    box-shadow: none !important;           /* remove Bootstrap's blue glow */
+    border-color: hsla(160 84.1% 39.4%) !important;      
+}
+
+.user-header {
+  background-color: #7c7d7e;
+  padding: 20px 0;
+  margin-bottom: 30px;
+  width: 100%;
+}
+        
+.user-header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+}
+        
+.user-header h1 {
+  color: white;
+  margin: 0;
+  font-size: 2rem;
+}
+
+/* Center all content */
+.centered-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+        
+/* Style for disabled elements */
+  .disabled-form {
+  opacity: 0.6;
+  pointer-events: none;
+}
+        
+.login-prompt {
+  text-align: center;
+  margin: 20px 0;
+  color: #2E3A3F;
+  font-weight: bold;
+}
+
+.disabled-nav-link {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
