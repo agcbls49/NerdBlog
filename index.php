@@ -1,3 +1,14 @@
+<?php 
+    session_start();
+    include("database.php");
+    
+    // Handle logout before any HTML output
+    if (isset($_POST["logout"])) {
+        session_destroy();
+        header("Location: index.php");
+        exit;
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +36,7 @@
                         <a class="nav-link" href="home.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login_register.php">Login/Register</a>
+                        <a class="nav-link <?php echo isset($_SESSION['username']) ? 'disabled-nav-link' : ''; ?>" href="login_register.php">Login/Register</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="about.html">About</a>
@@ -43,39 +54,6 @@
     <div class="container">
         <div class="row">
             <!-- Card 1 -->
-            <div class="col-md-6 mb-4">
-                <div class="card text-bg-light h-100">
-                    <div class="card-header">Header</div>
-                    <div class="card-body">
-                        <h5 class="card-title">Light card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Card 2 -->
-            <div class="col-md-6 mb-4">
-                <div class="card text-bg-light h-100">
-                    <div class="card-header">Header</div>
-                    <div class="card-body">
-                        <h5 class="card-title">Light card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Card 3 -->
-            <div class="col-md-6 mb-4">
-                <div class="card text-bg-light h-100">
-                    <div class="card-header">Header</div>
-                    <div class="card-body">
-                        <h5 class="card-title">Light card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Card 4 -->
             <div class="col-md-6 mb-4">
                 <div class="card text-bg-light h-100">
                     <div class="card-header">Header</div>

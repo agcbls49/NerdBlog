@@ -1,5 +1,4 @@
 <?php
-    // This must be FIRST
     session_start();
     include("database.php");
 
@@ -29,7 +28,6 @@
 
             if ($row = mysqli_fetch_assoc($result)) {
                 if (password_verify($password, $row["password"])) {
-                    // FIX: Changed from $row["user"] to $row["username"]
                     $_SESSION["username"] = $row["username"];
                     header("Location: home.php");
                     exit;

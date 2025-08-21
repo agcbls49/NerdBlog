@@ -2,6 +2,9 @@
     session_start();
     include("database.php");
 
+    $title = "";
+    $content = "";
+
     // Handle logout before any HTML output
     if (isset($_POST["logout"])) {
         session_destroy();
@@ -51,9 +54,9 @@
     </nav>
     <!-- Reminder for Logout Button -->
     <?php if(isset($_SESSION['username'])): ?>
-        <div class="user-header">
+        <div class="user-header" style="background-color: #FF8C00;">
             <div class="user-header-content">
-                <h1>Welcome to NerdBlog, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h1>
+                <h1 style="color: black; font-weight: bold;">Welcome to NerdBlog, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h1>
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                     <input type="submit" name="logout" value="Logout" class="btn btn-dark btn-lg">
                 </form>
@@ -72,19 +75,23 @@
         <?php endif; ?>
         
         <!-- Blog Form (disabled if not logged in) -->
-        <div class="<?php echo !isset($_SESSION['username']) ? 'disabled-form' : ''; ?>">
-            <div class="mb-3">
-                <label for="blog-title" class="form-label">Blog Title</label>
-                <input type="text" class="form-control" id="blog-title" placeholder="Add a title to your post" 
-                    style="font-weight: bold;" <?php echo !isset($_SESSION['username']) ? 'disabled' : ''; ?>>
+        <form action="create.php" method="post">
+            <div class="<?php echo !isset($_SESSION['username']) ? 'disabled-form' : ''; ?>">
+                <div class="mb-3">
+                    <label for="blog-title" class="form-label">Blog Title</label>
+                    <input type="text" class="form-control" id="blog-title" name="blog_title" value="<?php echo $title?>" placeholder="Add a title to your post" 
+                        style="font-weight: bold;" <?php echo !isset($_SESSION['username']) ? 'disabled' : ''; ?>>
+                </div>
+                <div class="form-floating">
+                    <textarea class="form-control" id="floatingTextarea" name="blog_content" value="<?php echo $content?>" <?php echo !isset($_SESSION['username']) ? 'disabled' : ''; ?>></textarea>
+                    <label for="floatingTextarea">Add text to your post</label>
+                    <br>
+                    <a href="index.php" class="btn btn-dark">See Other Posts</a>
+                    <input type="submit" value="Post" name="submit" class="btn btn-dark" <?php echo !isset($_SESSION['username']) ? 'disabled' : ''; ?>>
+                </div>
             </div>
-            <div class="form-floating">
-                <textarea class="form-control" id="floatingTextarea" <?php echo !isset($_SESSION['username']) ? 'disabled' : ''; ?>></textarea>
-                <label for="floatingTextarea">Add text to your post</label>
-                <br>
-                <input type="submit" value="Post" name="submit" class="btn btn-dark" <?php echo !isset($_SESSION['username']) ? 'disabled' : ''; ?>>
-            </div>
-        </div>
+        </form>
+        
     </div>
 </body>
 </html>
