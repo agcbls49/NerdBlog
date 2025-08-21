@@ -2,9 +2,6 @@
     session_start();
     include("database.php");
 
-    $title = "";
-    $content = "";
-
     // Handle logout before any HTML output
     if (isset($_POST["logout"])) {
         session_destroy();
@@ -23,7 +20,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nata+Sans:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script src="app.js"></script>
 </head>
 <body>
     <!-- Nav Bar -->
@@ -43,10 +39,10 @@
                         <a class="nav-link <?php echo isset($_SESSION['username']) ? 'disabled-nav-link' : ''; ?>" href="login_register.php">Login/Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
+                        <a class="nav-link" href="about.php">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="links.html">Links</a>
+                        <a class="nav-link" href="links.php">Links</a>
                     </li>
                 </ul>
             </div>
@@ -79,11 +75,11 @@
             <div class="<?php echo !isset($_SESSION['username']) ? 'disabled-form' : ''; ?>">
                 <div class="mb-3">
                     <label for="blog-title" class="form-label">Blog Title</label>
-                    <input type="text" class="form-control" id="blog-title" name="blog_title" value="<?php echo $title?>" placeholder="Add a title to your post" 
+                    <input type="text" class="form-control" id="blog-title" name="blog_title" placeholder="Add a title to your post" 
                         style="font-weight: bold;" <?php echo !isset($_SESSION['username']) ? 'disabled' : ''; ?>>
                 </div>
                 <div class="form-floating">
-                    <textarea class="form-control" id="floatingTextarea" name="blog_content" value="<?php echo $content?>" <?php echo !isset($_SESSION['username']) ? 'disabled' : ''; ?>></textarea>
+                    <textarea class="form-control" id="floatingTextarea" name="blog_content" <?php echo !isset($_SESSION['username']) ? 'disabled' : ''; ?>></textarea>
                     <label for="floatingTextarea">Add text to your post</label>
                     <br>
                     <a href="index.php" class="btn btn-dark">See Other Posts</a>

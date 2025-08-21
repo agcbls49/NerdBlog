@@ -1,7 +1,15 @@
 <?php 
     session_start();
     include("database.php");
-    
+
+    // Fetch posts from database
+    $sql = "SELECT id, username, title, content, created_at FROM blogs ORDER BY id DESC";
+    $result = $conn->query($sql);
+
+    if (!$result) {
+        die("Error: " . $conn->error); // helpful debug
+    }
+
     // Handle logout before any HTML output
     if (isset($_POST["logout"])) {
         session_destroy();
@@ -20,7 +28,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nata+Sans:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script src="app.js"></script>
 </head>
 <body>
     <!-- Nav Bar -->
@@ -39,10 +46,10 @@
                         <a class="nav-link <?php echo isset($_SESSION['username']) ? 'disabled-nav-link' : ''; ?>" href="login_register.php">Login/Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
+                        <a class="nav-link" href="about.php">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="links.html">Links</a>
+                        <a class="nav-link" href="links.php">Links</a>
                     </li>
                 </ul>
             </div>
@@ -50,19 +57,26 @@
     </nav>
     <br><br>
     <!-- Content -->
-    <!-- Cards Section -->
+    <!-- Cards or Blogs Section -->
     <div class="container">
         <div class="row">
-            <!-- Card 1 -->
-            <div class="col-md-6 mb-4">
-                <div class="card text-bg-light h-100">
-                    <div class="card-header">Header</div>
-                    <div class="card-body">
-                        <h5 class="card-title">Light card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-            </div>
+            <?php
+            while ($row = $result->fetch_assoc()) {
+                echo '
+                    <div class="col-md-6 mb-4">
+                        <div class="card text-bg-light h-100">
+                            <div class="card-header">
+                                Posted by ' . htmlspecialchars($row['username']) . ' on ' . date("M j, Y g:i A", strtotime($row['created_at'])) . '
+                                <button class="btn btn-sm btn-danger float-end delete-btn" data-id="' . $row['id'] . '">X</button>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">' . htmlspecialchars($row['title']) . '</h5>
+                                <p class="card-text">' . nl2br(htmlspecialchars($row['content'])) . '</p>
+                            </div>
+                        </div>
+                    </div>';
+            }
+            ?>
         </div>
     </div>
 </body>

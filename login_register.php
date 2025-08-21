@@ -48,7 +48,6 @@
     <title>Login/Register</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
-    <script src="app.js"></script>
 </head>
 <body>
     <!-- Nav Bar -->
@@ -67,10 +66,10 @@
                         <a class="nav-link" href="login_register.php">Login/Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
+                        <a class="nav-link" href="about.php">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="links.html">Links</a>
+                        <a class="nav-link" href="links.php">Links</a>
                     </li>
                 </ul>
             </div>

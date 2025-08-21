@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nata+Sans:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script src="app.js"></script>
 </head>
 <body>
     <!-- Nav Bar -->
@@ -25,13 +24,13 @@
                         <a class="nav-link" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login_register.php">Login/Register</a>
+                        <a class="nav-link <?php echo isset($_SESSION['username']) ? '' : 'disabled-nav-link'; ?>" href="login_register.php">Login/Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
+                        <a class="nav-link" href="about.php">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="links.html">Links</a>
+                        <a class="nav-link" href="links.php">Links</a>
                     </li>
                 </ul>
             </div>

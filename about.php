@@ -25,13 +25,13 @@
                         <a class="nav-link" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login_register.php">Login/Register</a>
+                        <a class="nav-link <?php echo isset($_SESSION['username']) ? '' : 'disabled-nav-link'; ?>" href="login_register.php">Login/Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
+                        <a class="nav-link" href="about.php">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="links.html">Links</a>
+                        <a class="nav-link" href="links.php">Links</a>
                     </li>
                 </ul>
             </div>
