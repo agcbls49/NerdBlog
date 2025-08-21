@@ -1,3 +1,14 @@
+<?php
+    session_start();
+        include("database.php");
+
+        // Handle logout before any HTML output
+        if (isset($_POST["logout"])) {
+            session_destroy();
+            header("Location: index.php");
+            exit;
+        }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +36,7 @@
                         <a class="nav-link" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php echo isset($_SESSION['username']) ? '' : 'disabled-nav-link'; ?>" href="login_register.php">Login/Register</a>
+                        <a class="nav-link <?php echo !isset($_SESSION['username']) ? '' : 'disabled-nav-link'; ?>" href="login_register.php">Login/Register</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="about.php">About</a>

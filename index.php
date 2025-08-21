@@ -61,21 +61,34 @@
     <div class="container">
         <div class="row">
             <?php
-            while ($row = $result->fetch_assoc()) {
-                echo '
-                    <div class="col-md-6 mb-4">
-                        <div class="card text-bg-light h-100">
-                            <div class="card-header">
-                                Posted by ' . htmlspecialchars($row['username']) . ' on ' . date("M j, Y g:i A", strtotime($row['created_at'])) . '
-                                <button class="btn btn-sm btn-danger float-end delete-btn" data-id="' . $row['id'] . '">X</button>
-                            </div>
+                while ($row = $result->fetch_assoc()) {
+                    echo '
+                        <div class="col-md-6 mb-4">
+                            <div class="card text-bg-light h-100">
+                                <div class="card-header">
+                                    Posted by ' . htmlspecialchars($row['username']) . ' on ' . date("M j, Y g:i A", strtotime($row['created_at'])) . '
+                    ';
+
+                    // Only show delete button if logged in
+                    if (isset($_SESSION['username'])) {
+                        echo '
+                            <form action="delete.php" method="POST" style="display:inline; float:right; margin:0;">
+                                <input type="hidden" name="id" value="' . $row['id'] . '">
+                                <button type="submit" class="btn btn-sm btn-danger">X</button>
+                            </form>
+                        ';
+                    }
+
+                    echo '
+                        </div>
                             <div class="card-body">
-                                <h5 class="card-title">' . htmlspecialchars($row['title']) . '</h5>
-                                <p class="card-text">' . nl2br(htmlspecialchars($row['content'])) . '</p>
+                            <h5 class="card-title">' . htmlspecialchars($row['title']) . '</h5>
+                            <p class="card-text">' . nl2br(htmlspecialchars($row['content'])) . '</p>
                             </div>
                         </div>
                     </div>';
-            }
+                }
+
             ?>
         </div>
     </div>
