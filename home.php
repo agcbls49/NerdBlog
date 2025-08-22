@@ -80,7 +80,7 @@
                         style="font-weight: bold;" <?php echo !isset($_SESSION['username']) ? 'disabled' : ''; ?>>
                 </div>
                 <div class="form-floating">
-                    <textarea class="form-control" id="floatingTextarea" name="blog_content" <?php echo !isset($_SESSION['username']) ? 'disabled' : ''; ?>></textarea>
+                    <textarea class="form-control" rows="15" style="height:100%;" id="floatingTextarea" name="blog_content" <?php echo !isset($_SESSION['username']) ? 'disabled' : ''; ?>></textarea>
                     <label for="floatingTextarea">Add text to your post</label>
                     <br>
                     <a href="index.php" class="btn btn-dark">See Other Posts</a>

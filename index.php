@@ -22,7 +22,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NerdBlog</title>
+    <title>NerdBlog - Blogs</title>
     <link rel="icon" type="image/x-icon" href="IconNerdBlog.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -63,6 +63,7 @@
         <div class="row">
             <?php
                 while ($row = $result->fetch_assoc()) {
+                    // Show username and date time on the post
                     echo '
                         <div class="col-md-6 mb-4">
                             <div class="card text-bg-light h-100">
@@ -75,16 +76,31 @@
                         echo '
                             <form action="delete.php" method="POST" style="display:inline; float:right; margin:0;">
                                 <input type="hidden" name="id" value="' . $row['id'] . '">
-                                <button type="submit" class="btn btn-sm btn-danger">X</button>
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                             </form>
                         ';
                     }
 
+                    // DO THIS NEXT MISSING FUNCTION
+                    if (isset($_SESSION['username'])) {
+                        echo '
+                            <form action="update.php" method="POST" style="display:inline; float:right; margin:0; margin-right: 10px;">
+                                <input type="hidden" name="id" value="' . $row['id'] . '">
+                                <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
+                            </form>
+                        ';
+                    }
+
+                    // Show the title and content of the post
                     echo '
                         </div>
-                            <div class="card-body">
-                            <h5 class="card-title">' . htmlspecialchars($row['title']) . '</h5>
-                            <p class="card-text">' . nl2br(htmlspecialchars($row['content'])) . '</p>
+                            <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">' . htmlspecialchars($row['title']) . '</h5>                        
+                            <p class="card-text flex-grow-1">' . nl2br(htmlspecialchars(substr($row['content'], 0, 200))) . '</p>
+                            <form action="view.php" method="GET" style="display:inline; float:left; margin:0;" class="mt-auto">
+                                <input type="hidden" name="id" value="' . $row['id'] . '">
+                                <button type="submit" class="btn btn-sm btn-dark">Read More</button>
+                            </form>
                             </div>
                         </div>
                     </div>';
