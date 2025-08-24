@@ -84,7 +84,7 @@
                     <label for="floatingTextarea">Add text to your post</label>
                     <br>
                     <a href="index.php" class="btn btn-dark">See Other Posts</a>
-                    <input type="submit" value="Post" name="submit" class="btn btn-dark" <?php echo !isset($_SESSION['username']) ? 'disabled' : ''; ?>>
+                    <input type="submit" value="Post" name="submit" class="btn btn-success" <?php echo !isset($_SESSION['username']) ? 'disabled' : ''; ?>>
                 </div>
             </div>
         </form>
