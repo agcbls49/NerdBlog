@@ -22,7 +22,12 @@
             header("Location: index.php"); // redirect to blog list
             exit;
         } else {
-            echo "Error: " . $stmt->error;
+            // make the required field work
+            if (empty($title) || empty($content)) {
+                echo "<div class='alert alert-danger'>Title and content cannot be empty.</div>";
+                exit;
+            }
+
         }
     }
 ?>

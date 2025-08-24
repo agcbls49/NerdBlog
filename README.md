@@ -18,6 +18,19 @@ A lightweight blog application built with PHP, HTML, CSS (Bootstrap), and MySQL.
 3. Open the project in your browser:
 > http://localhost/nerdblog
   
+## Database Setup
+1. Open phpMyAdmin 
+> http://localhost/phpmyadmin
+2. Create a new database called `nerdblog`.
+3. Import the SQL file:
+   - Go to the `Import` tab.
+   - Select `database/nerdblog.sql`.
+   - Click **Go**.
+4. Update `database.php` with your database credentials if needed:
+>  $db_server = "localhost";  
+    $db_user = "root";  
+    $db_password = "";  
+    $db_name = "nerdblog";  
 
 ## Development Setup
 - Recommended editor: VSCode
