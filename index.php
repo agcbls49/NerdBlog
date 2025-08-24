@@ -7,7 +7,7 @@
     $result = $conn->query($sql);
 
     if (!$result) {
-        die("Error: " . $conn->error); // helpful debug
+        die("Error: " . $conn->error);
     }
 
     // Handle logout before any HTML output
@@ -72,7 +72,7 @@
                     ';
 
                     // Only show delete button if logged in
-                    if (isset($_SESSION['username'])) {
+                    if (isset($_SESSION['username']) && $_SESSION['username'] == $row['username']) {
                         echo '
                             <form action="delete.php" method="POST" style="display:inline; float:right; margin:0;">
                                 <input type="hidden" name="id" value="' . $row['id'] . '">
@@ -81,12 +81,12 @@
                         ';
                     }
 
-                    // DO THIS NEXT MISSING FUNCTION
-                    if (isset($_SESSION['username'])) {
+                    // Allow edits if post username is same as username logged in
+                    if (isset($_SESSION['username']) && $_SESSION['username'] == $row['username']) {
                         echo '
-                            <form action="update.php" method="POST" style="display:inline; float:right; margin:0; margin-right: 10px;">
+                            <form action="update.php" method="GET" style="display:inline; float:right; margin:0; margin-right: 10px;">
                                 <input type="hidden" name="id" value="' . $row['id'] . '">
-                                <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
+                                <button type="submit" class="btn btn-sm btn-dark">Edit</button>
                             </form>
                         ';
                     }

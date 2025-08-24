@@ -3,6 +3,7 @@
 
     $post = null;
 
+    // This is for the read more button
     if (isset($_GET['id'])) {
         $id = intval($_GET['id']); 
 
